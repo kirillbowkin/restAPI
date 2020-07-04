@@ -27,6 +27,7 @@ public class CustomerRestControllerV1 {
 
         Customer customer = this.customerService.getById(customerId);
 
+
         if(customer == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
