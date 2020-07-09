@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Greeting</title>
@@ -10,16 +10,22 @@
 <body>
 
 <div class="container">
-    <h1>RESTful API is online</h1>
-    <h1>You can try it out using "Postman" or your own API client</h1>
-    <br>
-    <h2>List of commands</h2>
-    <br>
-    <h2>(GET)    /api/v1/customers - to get all customers</h2>
-    <h2>(GET)    /api/v1/customers/{id} - to get specific customers</h2>
-    <h2>(POST)   /api/v1/customers/ - to add customers</h2>
-    <h2>(PUT)    /api/v1/customers/ - to update customer(you'll need to specify customer's id in the very first line of JSON file, eg. "id" : "1")</h2>
-    <h2>(DELETE) /api/v1/customers/{id} - to delete specific customers</h2>
+    <div th:if="${online}">
+        <h1 th:text="${info}"></h1>
+        <h1>You can try it out using "Postman" or your own API client</h1>
+        <br>
+        <h2>List of commands</h2>
+        <br>
+        <h2>(GET)    /api/v1/customers - to get all customers</h2>
+        <h2>(GET)    /api/v1/customers/{id} - to get specific customers</h2>
+        <h2>(POST)   /api/v1/customers/ - to add customers</h2>
+        <h2>(PUT)    /api/v1/customers/ - to update customer(you'll need to specify customer's id in the very first line of JSON file, eg. "id" : "1")</h2>
+        <h2>(DELETE) /api/v1/customers/{id} - to delete specific customers</h2>
+    </div>
+
+    <div th:if="${!online}">
+        <h1 th:text="${info}"></h1>
+    </div>
 </div>
 
 </body>
