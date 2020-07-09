@@ -19,28 +19,30 @@ public class GreetingController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping
+    @GetMapping()
     public String greet(Model model){
 
-        Customer customer = customerService.getById(1L);
+        try {
+            Customer customer = customerService.getById(1L);
 
-        if(customer.getId() == 1L){
+            if(customer.getId() == 1L){
 
-            log.info("API is working");
+                log.info("API is working");
 
-            model.addAttribute("info", "RESTful API is online");
-            model.addAttribute("online", true);
+                model.addAttribute("info", "RESTful API is online");
+                model.addAttribute("online", true);
 
-            return "greet";
 
-        }else{
+            }
+        }catch (Throwable t){
             log.warn("API is unavailable");
 
             model.addAttribute("info", "RESTful API is unavailable");
             model.addAttribute("online", false);
 
-            return "greet";
         }
+
+            return "greet";
 
     }
 }
