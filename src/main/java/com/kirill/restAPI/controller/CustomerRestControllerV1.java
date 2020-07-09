@@ -35,6 +35,21 @@ public class CustomerRestControllerV1 {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
+    @RequestMapping(value ="/lastName/{lastName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Customer>> getCustomersByLastName(@PathVariable("lastName") String lastName){
+        if(lastName == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        List<Customer> customers = this.customerService.getAllByLastName(lastName);
+
+        if (customers.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> saveCustomer(@RequestBody @Validated Customer customer){
         if(customer == null){

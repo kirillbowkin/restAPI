@@ -33,4 +33,9 @@ public class CustomerServiceImpl implements CustomerService{
     public List<Customer> getAll() {
         return customerRepo.findAllByOrderByIdAsc();
     }
+
+    @Override
+    public List<Customer> getAllByLastName(String lastName) {
+        return customerRepo.findAllByLastName(lastName);
+    }
 }
