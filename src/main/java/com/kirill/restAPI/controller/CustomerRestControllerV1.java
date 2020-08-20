@@ -21,30 +21,30 @@ public class CustomerRestControllerV1 {
     private CustomerService customerService;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long customerId){
-        if(customerId == null){
+    public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long customerId) {
+        if (customerId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Customer customer = this.customerService.getById(customerId);
 
 
-        if(customer == null){
+        if (customer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @RequestMapping(value ="/lastName/{lastName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Customer>> getCustomersByLastName(@PathVariable("lastName") String lastName){
-        if(lastName == null){
+    @RequestMapping(value = "/lastName/{lastName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Customer>> getCustomersByLastName(@PathVariable("lastName") String lastName) {
+        if (lastName == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         List<Customer> customers = this.customerService.getAllByLastName(lastName);
 
-        if (customers.isEmpty()){
+        if (customers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -52,9 +52,9 @@ public class CustomerRestControllerV1 {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> saveCustomer(@RequestBody @Validated Customer customer){
-        if(customer == null){
-            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Customer> saveCustomer(@RequestBody @Validated Customer customer) {
+        if (customer == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         this.customerService.save(customer);
@@ -63,12 +63,12 @@ public class CustomerRestControllerV1 {
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> updateCustomer(@RequestBody @Validated Customer customer){
-        if(customer == null){
-            return  new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Customer> updateCustomer(@RequestBody @Validated Customer customer) {
+        if (customer == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        if(customer.getId() == null){
+        if (customer.getId() == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
@@ -78,11 +78,11 @@ public class CustomerRestControllerV1 {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Long customerId){
+    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Long customerId) {
         Customer customer = this.customerService.getById(customerId);
 
-        if(customer == null){
-            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (customer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         customerService.delete(customerId);
@@ -91,10 +91,10 @@ public class CustomerRestControllerV1 {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Customer>> getAllCustomers(){
+    public ResponseEntity<List<Customer>> getAllCustomers() {
         List<Customer> customers = customerService.getAll();
 
-        if (customers.isEmpty()){
+        if (customers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

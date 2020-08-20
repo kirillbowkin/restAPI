@@ -17,10 +17,9 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestPropertySource("/application-prod.properties")
 public class DatabaseOperationsTest {
 
@@ -28,13 +27,13 @@ public class DatabaseOperationsTest {
     private CustomerRepo customerRepo;
 
     @Test
-    public void TestGetCustomers(){
+    public void TestGetCustomers() {
 
-       assertNotNull(customerRepo.findAll());
+        assertNotNull(customerRepo.findAll());
     }
 
     @Test
-    public void TestGetCustomersByLastName(){
+    public void TestGetCustomersByLastName() {
 
         Customer customer = new Customer();
 
@@ -49,13 +48,13 @@ public class DatabaseOperationsTest {
     }
 
     @Test
-    public void TestGetCustomer(){
+    public void TestGetCustomer() {
 
         assertEquals(1, customerRepo.findById(1L).get().getId(), 1e-9);
     }
 
     @Test
-    public void TestPostCustomer(){
+    public void TestPostCustomer() {
 
         Customer customer = new Customer();
 
@@ -63,13 +62,13 @@ public class DatabaseOperationsTest {
 
         customerRepo.save(customer);
 
-        assertEquals(customer.getFirstName(), customerRepo.findById(6L).get().getFirstName());
+        assertEquals(customer.getFirstName(), customerRepo.findById(100L).get().getFirstName());
 
 
     }
 
     @Test
-    public void TestUpdateCustomer(){
+    public void TestUpdateCustomer() {
 
         Customer customer = new Customer();
 
@@ -83,7 +82,7 @@ public class DatabaseOperationsTest {
     }
 
     @Test
-    public void TestDeleteCustomer(){
+    public void TestDeleteCustomer() {
 
         customerRepo.deleteById(1L);
 

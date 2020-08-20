@@ -9,5 +9,8 @@ import java.util.List;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Long> {
     List<Customer> findAllByLastName(String lastName);
-    List<Customer> findAllByOrderByIdAsc();;
+
+    List<Customer> findAllByOrderByIdAsc();
+
+    ;
 }

@@ -20,12 +20,12 @@ public class GreetingController {
     private CustomerService customerService;
 
     @GetMapping()
-    public String greet(Model model){
+    public String greet(Model model) {
 
         try {
             Customer customer = customerService.getById(1L);
 
-            if(customer.getId() == 1L){
+            if (customer.getId() == 1L) {
 
                 log.info("API is working");
 
@@ -34,7 +34,7 @@ public class GreetingController {
 
 
             }
-        }catch (Throwable t){
+        } catch (Throwable t) {
             log.warn("API is unavailable");
 
             model.addAttribute("info", "RESTful API is unavailable");
@@ -42,7 +42,7 @@ public class GreetingController {
 
         }
 
-            return "greet";
+        return "greet";
 
     }
 }
